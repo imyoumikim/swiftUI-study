@@ -19,7 +19,7 @@ Compile Time = 코드 ~ 실행파일 생성까지
 
 Run Time = 실행 시
 
-First Class Citizen: 상수, 변수에 저장할 수 있음. 파라미터로 전달 가능. 함수에서 리턴 가능
+First Class Citizen: 상수, 변수에 저장할 수 있음 / 파라미터로 전달 가능 / 함수에서 리턴 가능
 
 ### Section 3.
 
@@ -164,7 +164,7 @@ Signed에서는 산술 시프트 >> 사용
 
 ### Section 9.
 
-- 옵셔널 바인딩에서는 같은 이름을 사용을 허용. ex) if let num = num { … }
+- 옵셔널 바인딩에서는 같은 이름 사용을 허용. ex) if let num = num { … }
 - Implicitly Unwrapped Optionals
     - 옵셔널이지만 특정 조건에서 자동으로 추출됨
     - 직접 강제 추출도 가능
@@ -181,3 +181,46 @@ Signed에서는 산술 시프트 >> 사용
 - Optional Pattern
     - Enumeration case Pattern의 옵셔널 버전
     - 별도의 guard문 작성이 필요X → 코드 간결
+
+### Section 10.
+- 함수의 핵심은 Reusability → 중복을 줄임
+- return의 역할 2가지: 함수 실행 중지 / 함수의 실행 결과를 리턴
+- 함수의 매개변수(formal parameter) = 함수 body에서 사용할 수 있는 임시 상수(즉, body에서 수정 안 됨)
+- 인자(argument) = actual parameter
+- 기본값을 설정해두면 함수를 호출할 때 그 값을 굳이 적을 필요 X
+- 인자 레이블(Argument Label)
+    - (name: Type) = name은 Parameter Name이자 Argument Label
+    - (label name: Type) = label은 Argument Label, name은 Parameter Name
+    - 인자 레이블은 함수를 호출할 때 사용하는 이름, 함수 body 내에서 사용하는 이름 X
+    - 같은 이유로 함수를 호출할 때 매개변수명을 사용하면 에러
+- 가변 매개변수
+    - 가변 매개변수는 함수당 하나씩만 선언 가능. 즉, (a: Int…, b: Double…) 불가. 위치나 순서는 상관 없음.
+    - 기본값을 가질 수 없음
+- In-Out 매개변수
+    - copy in - 보통의 매개변수와 동일함. 변수에 저장된 값을 함수 body 내부로 복사
+    - copy out - 실행이 종료되면 함수에서 변경된 값이 인자로 복사됨
+    - 상수와 리터럴은 inout 매개변수로 전달 불가 ← 바꿀 수 없으므로
+    - 기본값 선언 불가
+- Nested 함수
+    - 함수에서 nested 함수를 리턴하면 nested 함수의 범위가 함수를 호출한 곳으로 확장됨
+    - 그러나 범위가 확장됐다고 해서 직접 호출 가능한 것은 아님. 리턴된 함수를 통해서 간접적으로 호출
+
+### Section 11.
+- 클로저 = 비교적 짧고, 독립적인 코드 조각
+    - Named Closure = Function, Nested Function
+    - Unnamed Closure = Anonymous Function
+- 함수와 클로저는 서로 호환됨
+- 클로저를 호출할 때는 인자 레이블 사용 X
+- 매개변수명을 생략
+- 코드를 단축시키는 규칙
+    1. 파라미터 타입과 리턴형을 생략
+    2. 파라미터명을 생략하고 shorthand argument name으로 대체. ex) $0, $1
+    3. 클로저에 포함된 코드가 단일 리턴문이라면 return 키워드 생략
+    4. 클로저가 마지막 파라미터라면 trailing 클로저로 작성
+    5. 괄호 사이에 파라미터가 없다면 괄호를 생략
+- 클로저 내부에서 외부에 있는 값에 접근하면 값에 대한 참조를 획득하게 되고, 클로저 내부에서 값을 바꾼다면 외부의 원래 값도 바뀜
+- 클로저에서 메모리 관리를 하지 않는다면 참조 사이클 문제가 발생할 수 있음
+- Escaping Closure
+    - 함수의 실행이 종료된 후에도 실행될 수 있음. 즉, 함수 실행이 종료된 이후에 끝날 수도 있는 것.
+    - 파라미터 생명주기?
+        - 파라미터는 함수가 실행되면 생성되었다가 함수의 실행이 끝나면 자동으로 제거됨
