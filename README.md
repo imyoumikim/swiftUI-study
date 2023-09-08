@@ -183,6 +183,7 @@ Signed에서는 산술 시프트 >> 사용
     - 별도의 guard문 작성이 필요X → 코드 간결
 
 ### Section 10.
+
 - 함수의 핵심은 Reusability → 중복을 줄임
 - return의 역할 2가지: 함수 실행 중지 / 함수의 실행 결과를 리턴
 - 함수의 매개변수(formal parameter) = 함수 body에서 사용할 수 있는 임시 상수(즉, body에서 수정 안 됨)
@@ -206,6 +207,7 @@ Signed에서는 산술 시프트 >> 사용
     - 그러나 범위가 확장됐다고 해서 직접 호출 가능한 것은 아님. 리턴된 함수를 통해서 간접적으로 호출
 
 ### Section 11.
+
 - 클로저 = 비교적 짧고, 독립적인 코드 조각
     - Named Closure = Function, Nested Function
     - Unnamed Closure = Anonymous Function
@@ -224,3 +226,54 @@ Signed에서는 산술 시프트 >> 사용
     - 함수의 실행이 종료된 후에도 실행될 수 있음. 즉, 함수 실행이 종료된 이후에 끝날 수도 있는 것.
     - 파라미터 생명주기?
         - 파라미터는 함수가 실행되면 생성되었다가 함수의 실행이 끝나면 자동으로 제거됨
+
+### Section 12. Tuples
+
+- 튜플은 Compound 타입
+- 각 요소에 인덱스 또는 멤버 이름으로 접근 가능
+- 튜플을 분해할 때는 저장할 변수(상수)의 개수와 튜플의 멤버 개수가 일치해야 함
+
+### Section 13. String and Character
+
+- “c”와 같이 한 글자를 Character 타입으로 지정하려면 타입을 지정해주어야 함. 아니면 String으로 자동 타입 추론
+- NSString과 String(Foundation)은 Toll-Free Bridge
+    - 서로 호환이 가능한 타입이라는 뜻! 그러나 타입캐스팅은 필요함
+    - 유니코드를 처리하는 방식이 서로 다르니까 사용에 주의할 것
+- Mutability
+    - let로 선언 시 불변, var로 선언 시 가변
+- Multiline
+    - 큰 따옴표 세 개 (”””)로 구분
+    - 뒤의 큰 따옴표 세 개의 시작 위치가 String의 들여쓰기 시작 위치를 가리킴
+- String interpolation
+    - 문자열을 동적으로 생성
+    - 포맷 지정자
+        - %10d: 10칸짜리 정수(오른쪽 정렬)
+        - %-10d: 10칸짜리 정수(왼쪽 정렬)
+        - %8.3f: 8칸짜리 실수, 소수점 아래 3자리
+        - %010.3f: 10칸짜리 실수, 소수점 아래 3자리
+- String 생성자를 사용하여 문자열 생성 가능(어떤 타입이든)
+- N진수로 바꾸어 문자열 생성 - String(123, radix: 16)
+- 문자열은 문자들의 집합 = Character Sequence
+    - 따라서 for … in 반복문에서 사용 가능
+    - 문자열에 숫자를 저장하고 이 중 하나를 랜덤으로 뽑기도 가능 ← randomElement()
+    - “12345”와 같은 문자열을 쪼개서 랜덤으로 배치하여 [”3”, “4”, “5”, “2”, “1”] ← shuffled()
+- Substring
+    - .prefix() → 값을 읽어오기만 할 때는 원래 메모리를 공유하고, 값을 변경하게 되면 새로운 메모리가 생성됨
+    - 범위 연산자와 .startIndex, .endIndex를 활용
+- 문자열 편집
+    - 이름 뒤에 ing 또는 ed가 붙어있는 메소드는 원본을 변경하지 X
+    - insert()로 추가
+    - remove, removeFirst, removeLast로 삭제
+    - removeAll는 메모리 공간까지 삭제 / removeAll의 keepingCapacity를 true로 주면 메모리 공간 유지 가능. 만약 문자열을 초기화하고 비슷한 길이의 문자열을 다시 저장하고자 한다면 메모리 공간을 유지하는 것이 좋음.
+    - replaceSubrange()로 일정 범위를 내가 원하는 문자열로 대체
+    - drop, dropFirst, dropLast 메소드들은 Substring을 리턴
+- 문자열 비교
+    - <, >, == 비교연산자로 문자열 순서 가능
+    - 아스키 코드 상 소문자가 대문자보다 더 큰 값을 가짐
+- 문자열 찾기
+    - commonPrefix()는 공통된 접두어를 리턴
+- 문자열 옵션
+    - Swift는 여러개의 코드 유닛을 주면 조합해보고 같은지 다른지 여부를 판단함. 따라서 ‘한’의 유니코드와 ‘ㅎㅏㄴ’의 유니코드를 같다고 봄. compare 메소드를 사용할 때, .literal 옵션을 주면 유니코드를 처음부터 비교해서 하나라도 다르다면 바로 false하기 때문에 옵션을 주지 않았을 때보다 속도가 더 빠름. .literal 옵션이 없다면 합쳐보는 과정이 필요하기 때문. 그러나 실제로 체감하기는 어려운 차이.
+    - .anchored 옵션은 검색 부분을 처음이나 끝으로 제한
+        - .anchored 옵션을 .backwards와 함께 사용하면 접미어 비교와 같음
+        - .anchored 옵션 단독으로 사용하면 접두어 비교와 같음
