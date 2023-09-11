@@ -1,11 +1,11 @@
 ## 인프런 - iOS 개발을 위한 swift5 완벽 가이드
 
-### Section 1.
+### Section 1. Hello, Swift
 
 dump()는 print()보다 더욱 상세한 결과를 출력
 → 문자열과 문자열이 아닌 것을 구분 가능하도록
 
-### Section 2.
+### Section 2. Warming up
 
 Token: 문법적으로 더 이상 쪼갤 수 없는 단위(식별자, 구두점, 연산자 등)
 
@@ -21,7 +21,7 @@ Run Time = 실행 시
 
 First Class Citizen: 상수, 변수에 저장할 수 있음 / 파라미터로 전달 가능 / 함수에서 리턴 가능
 
-### Section 3.
+### Section 3. Working with Variables
 
 변수 타입은 한번 결정되면 바꿀 수 없음
 
@@ -40,7 +40,7 @@ name = 3.3 (X)
 
 같은 이름의 변수가 서로 다른 범위에 존재한다면, 더 인접한 범위의 변수를 사용
 
-### Section 4.
+### Section 4. Literals, Data Types
 
 **Built-in Data type**
 
@@ -73,7 +73,7 @@ name = 3.3 (X)
 
 typealias 키워드로 타입에 대한 별칭 지정 가능
 
-### Section 5.
+### Section 5. Operators
 
 - 나머지 연산자는 정수만 지원함
 - Double끼리 나머지 연산을 수행하고 싶다면? truncationRemainder(dividingBy: ) 메소드 사용
@@ -132,7 +132,7 @@ Signed에서는 산술 시프트 >> 사용
 
 → 우선순위를 결정해주어야 함
 
-### Section 6.
+### Section 6. Conditional Statements
 
 - if 문
     - 까다로운 조건을 먼저 달기!!
@@ -150,19 +150,19 @@ Signed에서는 산술 시프트 >> 사용
     - switch 구문에서 내부적으로 ~= 연산자가 불려서 사용됨. case의 범위를 확인할 때 사용
     - 두번째 파라미터 right은 value expression과 같은 타입(switch __*value expression*__)
 
-### Section 7.
+### Section 7. Loop Statements
 
 - repeat - while문(do while과 유사)
     - 일단 실행하고 조건을 확인
 
-### Section 8.
+### Section 8. Control Transfer Statements, Labeled Statements
 
 - Control Transfer Statements
     - break
     - continue
     - labeled
 
-### Section 9.
+### Section 9. Optionals
 
 - 옵셔널 바인딩에서는 같은 이름 사용을 허용. ex) if let num = num { … }
 - Implicitly Unwrapped Optionals
@@ -182,7 +182,7 @@ Signed에서는 산술 시프트 >> 사용
     - Enumeration case Pattern의 옵셔널 버전
     - 별도의 guard문 작성이 필요X → 코드 간결
 
-### Section 10.
+### Section 10. Functions
 
 - 함수의 핵심은 Reusability → 중복을 줄임
 - return의 역할 2가지: 함수 실행 중지 / 함수의 실행 결과를 리턴
@@ -206,7 +206,7 @@ Signed에서는 산술 시프트 >> 사용
     - 함수에서 nested 함수를 리턴하면 nested 함수의 범위가 함수를 호출한 곳으로 확장됨
     - 그러나 범위가 확장됐다고 해서 직접 호출 가능한 것은 아님. 리턴된 함수를 통해서 간접적으로 호출
 
-### Section 11.
+### Section 11. Closures
 
 - 클로저 = 비교적 짧고, 독립적인 코드 조각
     - Named Closure = Function, Nested Function
@@ -277,3 +277,121 @@ Signed에서는 산술 시프트 >> 사용
     - .anchored 옵션은 검색 부분을 처음이나 끝으로 제한
         - .anchored 옵션을 .backwards와 함께 사용하면 접미어 비교와 같음
         - .anchored 옵션 단독으로 사용하면 접두어 비교와 같음
+
+### Section 14. Collection
+
+- 클래스로 구현된 컬렉션
+    - **Foundation Collection**
+    - 참조 형식으로 처리하고자 할 때 사용
+    - NS 접두어가 있음
+    - 객체 형식의 데이터만 저장 가능
+    - 자료형에는 제한 X - 하나의 컬렉션 안에 문자, 숫자를 동시에 저장 가능
+    - 가변은 이름에 Mutable이 들어감
+- 구조체로 구현된 컬렉션
+    - **Swift Collection**
+    - 별다른 설명이 없이 ‘컬렉션’이라면 이것!
+    - 객체, 값 형식 모두 저장 가능
+    - 동일한 자료형의 데이터만 저장 가능 - 선언 시점에 타입을 명시적으로 지정
+    - let, var로 가변성을 표현
+- 컬렉션의 가변성은 요소의 가변성에 영향 X
+- Copy on write: 컬렉션이 변경되지 않는다면 항상 동일한 데이터 사용, 특정 시점에 데이터가 변경된다면 복사본을 생성하고 변경사항을 적용하므로 속도 향상
+- 배열
+    - 배열이 비어있는지 확인
+        - .count == 0
+        - .isEmpty
+    - 배열 요소에 접근
+        - [0] [1]과 같이 subscript 문법보다 .first, .last가 더 안전함
+        - 비어있는 배열일 때 nil을 리턴할 뿐, 에러가 발생하지는 않기 때문
+        - 인덱스 연산이 필요 없어서 코드가 단순함
+    - 배열 요소 추가
+        - .append()
+        - .insert(): 앞쪽에 요소를 추가하면 뒤의 요소들이 다 이동을 해야 하므로 오버헤드 발생 -> append() 사용 권장
+    - 배열 요소 교체
+        - 인덱스로 접근
+        - .replaceSubrange()
+        - 빈 배열로 교체할 경우, 삭제와 같은 효과
+    - 배열 요소 삭제
+        - .remove(): 잘못된 인덱스를 전달하지 않도록 주의
+        - .removeFirst()
+        - .removeLast() ← 배열이 비어있으면 에러 발생하므로 미리 확인 필요!
+        - .removeAll(): 배열의 내용을 모두 삭제
+        - .popLast() ← 배열이 비어있어도 nil을 리턴할 뿐 에러를 발생시키지 않으므로 코드가 안전해짐
+    - 배열 정렬
+        - sort(): 배열을 직접 정렬
+        - sorted(): 정렬된 새로운 배열을 리턴 - 원본 수정 X
+        - swapAt(a, b): a번째, b번째 요소를 스왑
+- 딕셔너리
+    - key, value가 한 쌍으로 저장되고, 순서 X
+    - 모든 key와 모든 value는 자료형이 같아야 함
+    - 빈 딕셔너리 표기 방법 = [:]
+    - 요소(key + value)에 접근
+        - key로 접근
+        - 해당하는 key가 없을 때, 디폴트값을 줄 수 있음
+        - .keys → key에만 접근
+        - .values → value에만 접근
+    - 요소 추가 & 변경
+        - key-value 쌍을 통해 요소 추가
+        - 이미 있는 key를 준다면 해당 요소 변경
+        - .updateValue(): 이미 존재하는 key라면 업데이트 or 없는 key라면 새로운 요소 추가
+    - 요소 삭제
+        - 존재하는 key에 대한 value로 nil을 대입 ← 존재하지 않는 key에 nil을 할당하면 아무 일도 일어나지 X
+        - .removeValue(): key의 요소를 삭제하고, 삭제한 value를 리턴. 없다면 nil 리턴
+        - .removeAll(): 전체 요소 삭제
+    - 요소 비교
+        - 딕셔너리를 비교할 때는 딕셔너리는 정렬되어있지 않다는 걸 유념! ⭐️
+        - 딕셔너리의 요소에는 정해진 순서가 없으므로 먼저 key, value를 각각 정렬하고, 비교하기
+        - 클로저로 조건 설정(e.g. key에 00이 포함되어 있는가, value에 00이 포함되어 있는가) → .contains(클로저), .first(클로저), .filter(클로저)
+- 집합 - Set
+    - 정렬X 인덱스 사용X
+    - 동일한 ‘타입’의 값만 저장, 동일한 값을 허용 X
+    - 해싱 알고리즘을 사용하기 때문에 배열보다 검색 속도가 빠름
+    - 요소 추가
+        - .insert()
+            - `(inserted: Bool, memberAfterInsert: Element)`와 같은 튜플 리턴
+            - 추가됐으면 inserted는 true, 이미 추가된 값이면 false, memberAfterInsert는 추가된 값 리턴
+        - .update()
+            - 무조건적으로 값을 추가
+            - 이미 있는 값이면 nil을 리턴
+            - 없는 값이면 집합에 추가한 후, 추가한 값을 리턴
+            - 동일한 hash값으로 인식되면 변경하지 X
+    - 요소 삭제
+        - .remove()
+        - .removeAll()
+    - 요소 비교
+        - ==, ≠
+        - .elementsEqual(): 순서대로 비교하므로 때에 따라 결과가 달라짐
+    - 부분집합, 상위 집합
+        - .isSubset(), .isStrictSubset()
+        - .isSuperset(), .isStrictSuperset()
+    - 서로소 집합
+        - .isDisjoint() ← 서로소 집합이면 true, 교집합이 있으면 false
+    - 합집합, 교집합 만들기
+        - .union()
+        - .formUnion() ← 원본 변경
+        - .intersection()
+        - .formIntersection() ← 원본 변경
+    - 여집합 구하기
+        - .symmetricDifference()
+        - .formSymmetricDifference()
+    - 차집합 구하기
+        - .substracting()
+        - .subtract() ← 원본 변경
+- 컬렉션 열거
+    - for … in
+        - break, continue, return문이 실행됨
+    - .forEach()
+        - break, continue, return문이 실행 X
+
+### Section 15. Enumeration
+
+- 잘못된 값을 입력할 위험이 줄어듦
+- 열거형 이름은 생략해도 되나, ‘.’은 생략하지 말 것
+- Raw values
+    - String, Character, Number형으로 제한됨
+    - 원시값을 직접 저장하면 이전 케이스에서 증가한 값은 저장되지 않음
+    - 원시값은 선언 이후에 변경 불가 - immutable
+- Associated Values(연관값)
+    - 저장할 값의 형식을 개별 케이스마다 따로 선언
+    - 케이스에 저장되는 값이기 때문에 열거형의 자료형과는 관련 X
+- Enumeration Case Pattern
+    - 연관값을 가진 열거형을 매칭시키는 패턴
