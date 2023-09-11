@@ -119,8 +119,8 @@ extension String.StringInterpolation {
     }
 }
 
-print("\(s)")
-print("\(s, style: .spellOut)")
+print("\(s)")                           // 1.2 x 3.4
+print("\(s, style: .spellOut)")         // one point two x three point four
 
 // ------------------------------------------------------------------------------------
 
@@ -190,9 +190,10 @@ num.randomElement()
 num.shuffled()  // 랜덤으로 섞어서 문자 배열로 출력
 
 // ------------------------------------------------------------------------------------
+// Substring
 
 let substr = "Hello, Swift"
-var first = substr.prefix(1)
+var first = substr.prefix(1)    // 지정한 maxLength개 만큼의 요소를 가져 옴 -> 배열의 길이보다 큰 숫자여도 에러X
 
 first.insert("!", at: first.endIndex)
 let newStr = String(substr.prefix(1))
@@ -207,8 +208,8 @@ let upper = substr.index(substr.startIndex, offsetBy: 5)    // [5]
 substr[lower ... upper]     // [2]~[5]
 
 // ------------------------------------------------------------------------------------
-
 // 문자열 편집
+
 var str2 = "Hello"
 str2.append("!!")   // 대상 문자열을 직접 변경
 str2
@@ -217,7 +218,7 @@ let str3 = str2.appending(" Swift")     // 원본 변경 X
 str2
 str3
 
-"File size is".appendingFormat("%.1f", 123.456)
+"File size is ".appendingFormat("%.1f", 123.456)
 
 var ex = "Hello Swift"
 ex.insert(",", at: ex.index(substr.startIndex, offsetBy: 5))   // 5번째 위치에 "," 추가
@@ -302,17 +303,17 @@ str.hasSuffix(suffix)
 
 str = "Hello, Swift"
 str.contains("swift")   // 대소문자 구분때문에 false
-str.lowercased().contains("swift")  // 대소문자 구분 없음
+str.lowercased().contains("swift")  // 대소문자 구분 없애니까 true
 
 str.range(of: "Swift")
-str.range(of: "swift", options: [.caseInsensitive])
+str.range(of: "swift", options: [.caseInsensitive])     // 대소문자 구분 X
 
 str2 = "Hello, Programming"
-let str4 = str2.lowercased()
 var common = str.commonPrefix(with: str2)   // 공통된 부분을 새로운 문자열로 리턴
 
+let str4 = str2.lowercased()    // hello, programming
 common = str.commonPrefix(with: str4)   // 대소문자 구분으로 인해 common = ""
-str.commonPrefix(with: str4, options: [.caseInsensitive])
+str.commonPrefix(with: str4, options: [.caseInsensitive])   // Hello,
 
 // ------------------------------------------------------------------------------------
 
@@ -352,7 +353,7 @@ if let result = str.range(of: "Swift") {        // 0
     print("not found")
 }
 
-if let result = str.range(of: "Swift", options: [.anchored]) {      // 0
+if let result = str.range(of: "Swift", options: [.anchored]) {      // 검색 영역을 시작 부분으로 한정 -> 0 출력
     print(str.distance(from: str.startIndex, to: result.lowerBound))
 } else {
     print("not found")
@@ -364,7 +365,7 @@ if let result = str.range(of: "Swift", options: [.backwards]) {     // 0
     print("not found")
 }
 
-if let result = str.range(of: "Swift", options: [.anchored, .backwards]) {  // not found
+if let result = str.range(of: "Swift", options: [.anchored, .backwards]) {  // 검색 영역을 끝 부분으로 한정 -> not found
     print(str.distance(from: str.startIndex, to: result.lowerBound))
 } else {
     print("not found")
@@ -385,13 +386,14 @@ file9 < file10  // 문자 하나씩 비교하는데 9 > 1이므로 false를 리�
 file9.compare(file10) == .orderedAscending  // false
 file9.compare(file10, options: [.numeric]) == .orderedAscending // true
 
+// Diacritic Insensitive Option - 발음 기호가 있는/없는 문자 비교
 let cafe1 = "Cafe"
 let cafe2 = "Cafè"
 
 cafe1.compare(cafe2) == .orderedSame    // false
 cafe1.compare(cafe2, options: [.diacriticInsensitive]) == .orderedSame  //true
 
-// 전각 문자와 반각 문자
+// Width insensitive Option - 전각 문자와 반각 문자
 "\u{30A1}".compare("\u{ff67}") == .orderedSame    // false
 "\u{30A1}".compare("\u{ff67}", options: [.widthInsensitive]) == .orderedSame    // true
 
