@@ -446,7 +446,7 @@ Signed에서는 산술 시프트 >> 사용
 - Nested Type
     - 포함 관계에 있는 모든 이름을 .으로 연결
  
-###Section 18. Method and Subscript
+### Section 18. Method and Subscript
 
 #### Subscript
 - get, set 블록
