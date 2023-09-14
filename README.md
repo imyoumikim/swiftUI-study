@@ -1,11 +1,33 @@
-## 인프런 - iOS 개발을 위한 swift5 완벽 가이드
+# Swift & SwiftUI Study
 
-### Section 1. Hello, Swift
+## Contents
+### 인프런 - iOS 개발을 위한 swift5 완벽 가이드
+* [Section 1. Hello Swift](#hello-swift)
+* [Section 2. Warming up](#warming-up)
+* [Section 3. Working with Variables](#working-with-variables)
+* [Section 4. Literals and Data Types](#literals-and-data-types)
+* [Section 5. Operators](#operators)
+* [Section 6. Conditional Statements](#conditional-statements)
+* [Section 7. Loop Statements](#loop-statements)
+* [Section 8. Control Transfer Statements and Labeled Statements](#control-transfer-statements-and-labeled-statements)
+* [Section 9. Optionals](#optionals)
+* [Section 10. Functions](#functions)
+* [Section 11. Closures](#closures)
+* [Section 12. Tuples](#tuples)
+* [Section 13. String and Character](#string-and-character)
+* [Section 14. Collection](#collection)
+* [Section 15. Enumeration](#enumeration)
+* [Section 23. Memory, Value Type and Reference Type](#memory-value-type-and-reference-type)
+* [Section 16. Structures and Classes](#structures-and-classes)
+* [Section 18. Method and Subscript](#method-and-subscript)
+
+
+### Hello Swift
 
 dump()는 print()보다 더욱 상세한 결과를 출력
 → 문자열과 문자열이 아닌 것을 구분 가능하도록
 
-### Section 2. Warming up
+### Warming up
 
 Token: 문법적으로 더 이상 쪼갤 수 없는 단위(식별자, 구두점, 연산자 등)
 
@@ -21,7 +43,7 @@ Run Time = 실행 시
 
 First Class Citizen: 상수, 변수에 저장할 수 있음 / 파라미터로 전달 가능 / 함수에서 리턴 가능
 
-### Section 3. Working with Variables
+### Working with Variables
 
 변수 타입은 한번 결정되면 바꿀 수 없음
 
@@ -40,7 +62,7 @@ name = 3.3 (X)
 
 같은 이름의 변수가 서로 다른 범위에 존재한다면, 더 인접한 범위의 변수를 사용
 
-### Section 4. Literals, Data Types
+### Literals and Data Types
 
 **Built-in Data type**
 
@@ -73,7 +95,7 @@ name = 3.3 (X)
 
 typealias 키워드로 타입에 대한 별칭 지정 가능
 
-### Section 5. Operators
+### Operators
 
 - 나머지 연산자는 정수만 지원함
 - Double끼리 나머지 연산을 수행하고 싶다면? truncationRemainder(dividingBy: ) 메소드 사용
@@ -132,7 +154,7 @@ Signed에서는 산술 시프트 >> 사용
 
 → 우선순위를 결정해주어야 함
 
-### Section 6. Conditional Statements
+### Conditional Statements
 
 - if 문
     - 까다로운 조건을 먼저 달기!!
@@ -150,19 +172,19 @@ Signed에서는 산술 시프트 >> 사용
     - switch 구문에서 내부적으로 ~= 연산자가 불려서 사용됨. case의 범위를 확인할 때 사용
     - 두번째 파라미터 right은 value expression과 같은 타입(switch __*value expression*__)
 
-### Section 7. Loop Statements
+### Loop Statements
 
 - repeat - while문(do while과 유사)
     - 일단 실행하고 조건을 확인
 
-### Section 8. Control Transfer Statements, Labeled Statements
+### Control Transfer Statements and Labeled Statements
 
 - Control Transfer Statements
     - break
     - continue
     - labeled
 
-### Section 9. Optionals
+### Optionals
 
 - 옵셔널 바인딩에서는 같은 이름 사용을 허용. ex) if let num = num { … }
 - Implicitly Unwrapped Optionals
@@ -182,7 +204,7 @@ Signed에서는 산술 시프트 >> 사용
     - Enumeration case Pattern의 옵셔널 버전
     - 별도의 guard문 작성이 필요X → 코드 간결
 
-### Section 10. Functions
+### Functions
 
 - 함수의 핵심은 Reusability → 중복을 줄임
 - return의 역할 2가지: 함수 실행 중지 / 함수의 실행 결과를 리턴
@@ -206,7 +228,7 @@ Signed에서는 산술 시프트 >> 사용
     - 함수에서 nested 함수를 리턴하면 nested 함수의 범위가 함수를 호출한 곳으로 확장됨
     - 그러나 범위가 확장됐다고 해서 직접 호출 가능한 것은 아님. 리턴된 함수를 통해서 간접적으로 호출
 
-### Section 11. Closures
+### Closures
 
 - 클로저 = 비교적 짧고, 독립적인 코드 조각
     - Named Closure = Function, Nested Function
@@ -227,13 +249,13 @@ Signed에서는 산술 시프트 >> 사용
     - 파라미터 생명주기?
         - 파라미터는 함수가 실행되면 생성되었다가 함수의 실행이 끝나면 자동으로 제거됨
 
-### Section 12. Tuples
+### Tuples
 
 - 튜플은 Compound 타입
 - 각 요소에 인덱스 또는 멤버 이름으로 접근 가능
 - 튜플을 분해할 때는 저장할 변수(상수)의 개수와 튜플의 멤버 개수가 일치해야 함
 
-### Section 13. String and Character
+### String and Character
 
 - “c”와 같이 한 글자를 Character 타입으로 지정하려면 타입을 지정해주어야 함. 아니면 String으로 자동 타입 추론
 - NSString과 String(Foundation)은 Toll-Free Bridge
@@ -278,7 +300,7 @@ Signed에서는 산술 시프트 >> 사용
         - .anchored 옵션을 .backwards와 함께 사용하면 접미어 비교와 같음
         - .anchored 옵션 단독으로 사용하면 접두어 비교와 같음
 
-### Section 14. Collection
+### Collection
 
 - 클래스로 구현된 컬렉션
     - **Foundation Collection**
@@ -382,7 +404,7 @@ Signed에서는 산술 시프트 >> 사용
     - .forEach()
         - break, continue, return문이 실행 X
 
-### Section 15. Enumeration
+### Enumeration
 
 - 잘못된 값을 입력할 위험이 줄어듦
 - 열거형 이름은 생략해도 되나, ‘.’은 생략하지 말 것
@@ -396,7 +418,7 @@ Signed에서는 산술 시프트 >> 사용
 - Enumeration Case Pattern
     - 연관값을 가진 열거형을 매칭시키는 패턴
 
-### Section 23. Memory, Value Type and Reference Type
+### Memory, Value Type and Reference Type
 
 - 왼쪽은 MSB, 오른쪽은 LSB
 - 2의 보수: bitwise not 연산 → +1
@@ -427,7 +449,7 @@ Signed에서는 산술 시프트 >> 사용
     - self 키워드를 클로저에서 사용하면, 클로저가 실행이 종료될 때까지 self를 강한 참조로 캡처
     - 클로저 실행이 완료되지 않은 시점에 캡처 대상이 해제될 수 있다면 주로 약한 참조 사용
 
-### Section 16. Structures and Classes
+### Structures and Classes
 
 - Swift는 크게 Object-Oriented Programming, Protocol-Oritented Programming, Functional Programming을 지향
 - Swift는 구조체, 클래스에 관계 없이 모두 인스턴스라고 부름
@@ -446,7 +468,7 @@ Signed에서는 산술 시프트 >> 사용
 - Nested Type
     - 포함 관계에 있는 모든 이름을 .으로 연결
  
-### Section 18. Method and Subscript
+### Method and Subscript
 
 #### Subscript
 - get, set 블록
