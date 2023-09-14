@@ -20,8 +20,11 @@
 * [Section 23. Memory, Value Type and Reference Type](#memory-value-type-and-reference-type)
 * [Section 16. Structures and Classes](#structures-and-classes)
 * [Section 18. Method and Subscript](#method-and-subscript)
+### 인프런 - SwiftUI - iOS14 퍼펙트 가이드
+* [Section 0. iOS14 기본학습](#기본학습)
 
 
+## 인프런 - iOS 개발을 위한 swift5 완벽 가이드
 ### Hello Swift
 
 dump()는 print()보다 더욱 상세한 결과를 출력
@@ -481,3 +484,18 @@ Signed에서는 산술 시프트 >> 사용
 - 두 개 이상의 값을 전달할 때는 ,로 연결하여 나열
     - m[0, 0] → O
     - m[0][0] → X
+
+## 인프런 - SwiftUI - iOS14 퍼펙트 가이드
+### 기본학습
+- Stack
+    - Vstack = vertical stack(상하)
+    - Hstack = horizontal stack(좌우)
+    - Zstack (앞뒤) = 뒤에서 앞으로 겹겹이 쌓기
+    - .edgesIgnoringSafeArea(.all)
+- Text
+    - padding 대신 frame을 넣을 수도 있음
+    - background→padding, padding→background 순서에 따라 모양이 달라짐. 순서 중요!
+    - .linelimit(): 텍스트가 길 때, 줄 수 제한
+    - .truncationMode(): 텍스트가 길 때, 어딜 자를 것인지, head/middle /tail
+    - .linespacing(): 텍스트가 여러 줄일 때, 줄 간격. 음수를 준다 해도 겹치지는 X
+    - .cornerRadius(): 배경이나 모양의 모서리를 둥글게. 특정 값 이상으로는 더 동그래지지 않음.
