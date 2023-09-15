@@ -499,3 +499,34 @@ Signed에서는 산술 시프트 >> 사용
     - .truncationMode(): 텍스트가 길 때, 어딜 자를 것인지, head/middle /tail
     - .linespacing(): 텍스트가 여러 줄일 때, 줄 간격. 음수를 준다 해도 겹치지는 X
     - .cornerRadius(): 배경이나 모양의 모서리를 둥글게. 특정 값 이상으로는 더 동그래지지 않음.
+- Image
+    - Asset에 추가한 뒤 Image(”이미지 이름”)로 이미지 추가
+    - 크기 조절
+        - .resizable() 옵션 있어야 이미지 크기가 변함
+        - .frame(width: ): 원하는 크기 설정. 지정하지 않으면 화면에 가득차도록 자동 설정
+        - frame 대신 간격만 조금 주려고 padding을 넣기도 함
+    - 비율 조절
+        - .aspectRatio(): 이미지 비율 설정
+            - .fit: 원본 비율 유지한 채 화면에 잘리는 부분 없이 채우기
+            - .fill: 화면 전체를 채우기 때문에 잘리는 부분이 있을 수 있음
+        - aspectRatio 지정 후 frame 지정하기!
+    - .mask(): 마스크로 이미지 편집
+- Shape
+    - 도형에 색을 칠할 때는 .background가 아닌 .fill
+    - .stroke: 테두리 선 옵션
+    - 사각형: Rectangle, RoundedRectangle
+    - 원: Circle, Capsule, Ellipse
+- Button
+    - @State 키워드: UI가 변경되면 @State인 값도 같이 갱신시킴
+        - 해당되는 뷰 안에서만 사용하는 값이므로 private 선언
+        - 뷰 안에서 write 하지 않는 요소는 State 필요 없음
+    - .description: Bool 타입 변수의 값을 String으로 변환
+- Toggle
+    - @Binding: 원래 값과 연결시킨다는 개념
+        - Binding은 어딘가에 값이 있기 때문에 값을 직접적으로 가질 수 없음
+- List
+    - ForEach 메소드는 크게 3가지가 있음
+        - Hashable 프로토콜 사용
+        - Identifiable 프로토콜 사용
+        - 인덱스 사용
+        - ‘SwiftUI-sec0button~’ 폴더 코드 살펴보기!
