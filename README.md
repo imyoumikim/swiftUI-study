@@ -530,3 +530,11 @@ Signed에서는 산술 시프트 >> 사용
         - Identifiable 프로토콜 사용
         - 인덱스 사용
         - ‘SwiftUI-sec0button~’ 폴더 코드 살펴보기!
+        - List section = row들의 묶음
+    - header, footer에는 view 프로토콜을 따르는 것이 들어가야 함
+- ViewModifier
+    - 자주 쓰이는 설정(텍스트 스타일 등)을 모아놓고 사용
+    - 코드의 중복을 줄임
+    - ViewModifier에서 사용할 수 없는 설정이 있다면 extension으로 추가 가능
+- Alert
+    - Alert창의 왼쪽, 오른쪽 버튼의 텍스트와 기능 설정 가능
