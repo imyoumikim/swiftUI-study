@@ -538,3 +538,71 @@ Signed에서는 산술 시프트 >> 사용
     - ViewModifier에서 사용할 수 없는 설정이 있다면 extension으로 추가 가능
 - Alert
     - Alert창의 왼쪽, 오른쪽 버튼의 텍스트와 기능 설정 가능
+-  Grid
+    - LazyVGrid, LazyHGrid 두 종류
+    - GridItem
+        - fixed: 화면에 넘칠 수 있으므로 주의
+        - flexible: 최소, 최대값을 설정하여 조절 가능 ← 커질 수 있는 대로 커짐
+        - adaptive: 나열될 수 있는 만큼 나옴 ← minimum으로 잡을 수 있는 경우에는 가장 작게 잡음
+    - 스크롤 기능이 없음 → ScrollView로 감싸야 함
+- Placeholder
+    - .redacted(reason: .placeholder)
+- NavigationView
+    - displayMode에는 automatic, inline, large가 있음
+        - automatic: 기존에 있던 스타일을 의존적으로 사용
+    - NavigationLink를 내부에 추가할 수 있음 → 링크를 통해 destination으로 이동하도록
+    - NavigationBar를 꾸밀 수 있음
+        - UINavigationBarAppearance()을 생성하여 여러 설정을 각각 적용하는 방법
+            - .large에서는 안 보이고 화면을 위로 스크롤해야 적용된 것이 보임
+            - large title을 위한 속성이 따로 있음
+        - UINavigationBar.appearance().titleTextAttributes와 같이 직접 적용하는 방법
+        - 둘의 결과물이 살짝 다름
+    <img width="25%" alt="navi" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/87c5f046-6601-4dab-bc7e-706279a681d3">
+
+- TabView
+    - TabView 안에 원하는 개수만큼의 .tabItem을 넣고, 하단 탭바에 보이고 싶은 것을 tabItem 안에 넣기
+    - overlay(): 위에 무언가를 얹는다는 의미
+- Custom Toggle
+    - 여러 도형을 쌓아서 제작 가능
+    - GeometryReader
+        - 하위 뷰들의 모양이나 위치를 조작하기 용이하도록 하는 Container View
+        - GeometryReader 내부 View 하나하나에 제안된 위치, 크기 정보가 아니라, GeometryReader라는 큰 View 자체에 제안된 위치에 접근할 수 있다는 것
+        - [참고] [https://medium.com/hcleedev/swift-geometryreader는-무엇일까-564896c6d6e0](https://medium.com/hcleedev/swift-geometryreader%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C-564896c6d6e0)
+    <img width="25%" alt="toggle" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/097a0394-ab9d-4de3-8bf1-430a46ef3dec">
+- TextEditor
+    - 긴 텍스트 형식을 표시하고 편집할 수 있음
+    <img width="25%" alt="edit" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/85f86b53-8f7b-4748-921c-e9e2629093a0">
+
+- ScrollViewReader
+    - .scrollTo(): 원하는 위치로 스크롤
+        - 강의와 다르게 Text에 id를 지정해주어야 스크롤이 가능한 오류가 있었음
+    <img width="25%" alt="scroll" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/f4cb85c0-a523-40df-a41a-4bbe3d82c0cb">
+- @State
+    - struct는 값 타입이므로 struct의 프로퍼티의 값을 변경할 수 없음
+    - 따라서 클래스에서 변수를 사용하는 것처럼 값을 변경 가능하도록 만들어주는 것이 @State의 기능
+    - 보통 만들어진 다른 View와 공유되지 않고 View 안에서만 사용 가능하도록 함 → private 선언
+        - 다른 View와 공유할 때는 @ObservedObject, @EnvironmentObject를 사용하는 것이 좋음
+    - String, Int, Bool 등 단순한 타입에만 사용하는 것이 좋음
+- @Binding
+    - 여러 가지 View에서 같은 값을 사용하고자 할 때 사용
+    - 바인딩되어 있는 값은 View에서 값이 변화하면 모델에 바로 적용시킴
+- ObservableObject 프로토콜
+    - Combine 프레임워크의 일부로, 클래스 기반으로 다양한 곳에서 공통적으로 사용하는 모델을 만들 때 사용
+    - @Published 어노테이션 추가 → 값의 변경을 계속 추적하여 바로 업데이트
+        - .send() 메소드는 변경된 사항이 있음을 알려주는 메소드인데, 사용하는 변수가 많아지고 복잡해진다면 @Published를 사용
+        - @Published는 send() 메소드를 자동으로 호출하여 뷰를 다시 그리도록 함
+- @ObservedObject
+    - 값이 변경되면 View에게 값이 변경되었음을 알려주고 View를 다시 그리도록 하는 기능
+    - 값의 수명은 View의 생명주기를 따름
+    - 즉, View의 렌더링이 일어나면 @ObservedObject의 인스턴스가 초기화됨 → 이를 보완하는 것이 @StateObject
+- @StateObject
+    - @ObservedObject와 동일한 일을 하나, 차이점을 알아야 함!
+    - 하나의 객체로 만들어지고, 별도의 메모리 공간에 저장되어 보관되기 때문에 View의 생명주기와 관계 없이 초기화되지 않고 유지됨
+- @EnvironmentObject
+    - 싱글톤과 유사
+    - 여러 화면에서 공통으로 공유되는 데이터
+    - 인스턴스화X. 구조는 이미 올라가있으니 바로 사용하면 됨
+- AppStorage
+    - 앱에서 저장해서 갖고 있어야 하는 정보(e.g. 설정)들이 있음
+    - 앱을 종료해도 유지되는 값
+    - 간단한 타입의 값을 저장하는 것이 적합
