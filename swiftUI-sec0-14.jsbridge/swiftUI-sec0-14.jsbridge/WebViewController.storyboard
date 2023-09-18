@@ -11,12 +11,12 @@
         <!--Web View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="WebViewController" customModule="swiftUI_sec0_13_webview_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="WebViewController" customModule="swiftUI_sec0_14_jsbridge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Up5-o5-5LQ">
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWv-GI-ESX" customClass="WebViewController" customModule="swiftUI_sec0_14_jsbridge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -28,19 +28,16 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Up5-o5-5LQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="CnR-rj-IcD"/>
-                            <constraint firstItem="Up5-o5-5LQ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="MJR-Vl-kXb"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Up5-o5-5LQ" secondAttribute="bottom" id="NW6-ZA-Dwd"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Up5-o5-5LQ" secondAttribute="trailing" id="h9F-wR-3aS"/>
+                            <constraint firstItem="vWv-GI-ESX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="8y2-hF-xJd"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="vWv-GI-ESX" secondAttribute="trailing" id="Wcp-nY-cWF"/>
+                            <constraint firstItem="vWv-GI-ESX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="amk-t9-rfz"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="vWv-GI-ESX" secondAttribute="bottom" id="is7-y6-JA8"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="webView" destination="Up5-o5-5LQ" id="Oe2-mL-tCw"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="-34"/>
+            <point key="canvasLocation" x="123" y="-2"/>
         </scene>
     </scenes>
     <resources>
