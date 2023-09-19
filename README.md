@@ -1,4 +1,4 @@
-# Swift & SwiftUI Study
+# Swift and SwiftUI Study
 
 ## Contents
 ### 인프런 - iOS 개발을 위한 swift5 완벽 가이드
@@ -20,8 +20,15 @@
 * [Section 23. Memory, Value Type and Reference Type](#memory-value-type-and-reference-type)
 * [Section 16. Structures and Classes](#structures-and-classes)
 * [Section 18. Method and Subscript](#method-and-subscript)
+* [Section 21. Extension](#extension)
+* [Section 22. Protocol](#protocol)
+* [Section 24. Generics](#generics)
+
 ### 인프런 - SwiftUI - iOS14 퍼펙트 가이드
 * [Section 0. iOS14 기본학습](#기본학습)
+* [Section 1. GridView Gallery](#gridview-gallery)
+* [Section 2. Network JSON](#network-json)
+* [Section 3. Network Image](#network-image)
 
 
 ## 인프런 - iOS 개발을 위한 swift5 완벽 가이드
@@ -485,6 +492,44 @@ Signed에서는 산술 시프트 >> 사용
     - m[0, 0] → O
     - m[0][0] → X
 
+### Extension
+- 형식을 확장하는 데 사용
+- 확장 가능한 대상: 클래스, 구조체, 열거형, 프로토콜
+- 새로운 멤버는 별도의 코드 조각으로 구현, 형식과 연관시켜서 기존 멤버와 함께 사용
+- 형식 선언이 포함되어있는 경우에도 문제 없이 확장 가능
+- 오버라이딩 불가능
+- [추가 가능한 것]
+    - 속성
+        - 계산 속성만 가능
+        - 저장 속성, Property Observer 불가능
+    - 메소드
+        - 인스턴스 메소드, 타입 메소드 모두 가능
+    - 생성자
+        - 클래스 확장 시 간편 생성자만 추가 가능
+        - 지정 생성자, 소멸자는 원본 형식에서 구현
+    - 서브스크립트
+    - Nested type
+ 
+### Protocol
+- 형식에서 공통적으로 제공하는 멤버 목록(요구사항)
+- 실제 구현은 포함되지 않음
+- 클래스나 구조체가 프로토콜의 목록을 실제 구현함
+- 프로토콜을 채용한 형식은 반드시 프로토콜에 선언된 필수 멤버를 모두 구현해야 함
+- 상속 지원, 다중 상속 허용
+- class func vs static func
+    - 공통점
+        - 둘다 타입 메소드
+        - 객체 보다는 클래스 자체에 연관
+        - 생성자 없이 바로 접근 가능
+    - 차이점
+        - class 함수는 오버라이드 가능
+        - static 함수는 오버라이드 불가능
+- 선택적 요구사항
+    - @objc optional 변수는 자동으로 옵셔널 타입이 됨
+ 
+### Generics
+- 같은 이름의 함수가 두 개 있을 때 전달하는 매개변수에 따라 호출되는 함수가 결정됨
+
 ## 인프런 - SwiftUI - iOS14 퍼펙트 가이드
 ### 기본학습
 - Stack
@@ -606,3 +651,40 @@ Signed에서는 산술 시프트 >> 사용
     - 앱에서 저장해서 갖고 있어야 하는 정보(e.g. 설정)들이 있음
     - 앱을 종료해도 유지되는 값
     - 간단한 타입의 값을 저장하는 것이 적합
+### GridView Gallery
+- CaseIterable 프로토콜
+    - A type that provides a collection of all of its values.
+    - enum을 배열화할 수 있음
+- .flexible(): 화면에 최대한 꽉차게
+- .adaptive(): 상황에 맞게 알아서 크기 조절
+
+### Network JSON
+- json placeholder 사이트: https://jsonplaceholder.typicode.com/
+- V(H)stack vs LazyV(H)Stack
+    - Vstack은 최적화 X
+    - LazyStack은 테이블 view와 마찬가지로 view를 재활용할 가능성이 높음
+    - LazyStack은 콘텐츠가 view를 로드하지만 V(H)Stack은 슼롤하기 전부터 전부 로드
+    - LazyStack은 자동으로 여유 공간을 차지함
+    - → 용량이 있는 데이터를 사용할 때는 단순한 Stack보다는 LazyStack을 사용하는 것이 좋음
+- @escaping 클로저
+    - 클로저가 함수의 인자로 전달됐을 때, 함수의 실행이 종료된 후 실행되는 클로저
+    - Non-Escaping 클로저는 반대로 함수의 실행이 종료되기 전에 실행되는 클로저
+    - @escaping이 붙어있어도 non-escaping 클로저를 인자로 넣을 수 있음
+    - @escaping이 없으면 escaping 클로저를 사용할 수 없음
+    - @escaping을 항상 붙여두면 escaping, non-escaping 클로저 모두를 사용할 수 있는데 왜 굳이 구분하는가?
+        - 컴파일러의 퍼포먼스와 최적화 때문
+        - non-escaping 클로저는 컴파일러가 클로저의 실행이 언제 종료되는지 알기 때문에 객체의 life cycle을 효율적으로 관리 가능
+        - escaping 클로저는 함수 밖에서 실행되기 때문에 클로저가 함수 밖에서도 실행되는 것을 보장하기 위해 클로저에서 사용하는 객체에 대한 추가적인 reference cycle 관리 등을 해줘야 함
+        - [참조] https://jusung.github.io/Escaping-Closure/
+     
+### Network Image
+- 간단하게 Restful API를 구현할 수 있게 해주는 사이트: https://mockapi.io/projects
+- DispatchQueue.main.async ← 메인 스레드에서 UI 변경이 일어나야 함
+- 네트워크를 통해 받아온 데이터를 UIImage라는 형태. data → UIImage로 변환해야 사용 가능
+- 변화를 감지하기 위해 @Published 어노테이션 추가
+<img width="25%" alt="userlist1" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/7bf43982-e39a-4923-9cd5-d8b32a0f99f7">
+<img width="25%" alt="userlist2" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/2ee87338-ae3e-493d-982f-a2191b3b59ba">
+
+
+------------------
+[맨 위로 이동](#swift-and-swiftui-study)
