@@ -17,18 +17,8 @@ struct ContentView: View {
         VStack {
             GridTypePicker(gridType: $selectedGridType)
             
-            ScrollView {
-                LazyVGrid(columns: selectedGridType.columns, content: {
-                    ForEach(items){ item in
-                        Image(item.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    }
-                })
-                .animation(.default)
-            }
+            ItemStyle(items: items, gridType: $selectedGridType)
         }
-        
     }
 }
 

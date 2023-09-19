@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44C362072AB91F1D00E8219A /* SingleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C362062AB91F1D00E8219A /* SingleRow.swift */; };
+		44C362092AB922E900E8219A /* ItemStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C362082AB922E900E8219A /* ItemStyle.swift */; };
 		5EDC34132AB886800044A96F /* swiftUI_sec1_GridViewGalleryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC34122AB886800044A96F /* swiftUI_sec1_GridViewGalleryApp.swift */; };
 		5EDC34152AB886800044A96F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC34142AB886800044A96F /* ContentView.swift */; };
 		5EDC34172AB886810044A96F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EDC34162AB886810044A96F /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44C362062AB91F1D00E8219A /* SingleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleRow.swift; sourceTree = "<group>"; };
+		44C362082AB922E900E8219A /* ItemStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStyle.swift; sourceTree = "<group>"; };
 		5EDC340F2AB886800044A96F /* swiftUI-sec1-GridViewGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swiftUI-sec1-GridViewGallery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EDC34122AB886800044A96F /* swiftUI_sec1_GridViewGalleryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftUI_sec1_GridViewGalleryApp.swift; sourceTree = "<group>"; };
 		5EDC34142AB886800044A96F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 				5EDC34202AB887D50044A96F /* GridType.swift */,
 				5EDC34242AB88B130044A96F /* GridTypePicker.swift */,
 				5EDC34262AB8914A0044A96F /* Item.swift */,
+				44C362062AB91F1D00E8219A /* SingleRow.swift */,
+				44C362082AB922E900E8219A /* ItemStyle.swift */,
 			);
 			path = "swiftUI-sec1-GridViewGallery";
 			sourceTree = "<group>";
@@ -148,8 +154,10 @@
 			files = (
 				5EDC34272AB8914A0044A96F /* Item.swift in Sources */,
 				5EDC34212AB887D50044A96F /* GridType.swift in Sources */,
+				44C362072AB91F1D00E8219A /* SingleRow.swift in Sources */,
 				5EDC34252AB88B130044A96F /* GridTypePicker.swift in Sources */,
 				5EDC34152AB886800044A96F /* ContentView.swift in Sources */,
+				44C362092AB922E900E8219A /* ItemStyle.swift in Sources */,
 				5EDC34132AB886800044A96F /* swiftUI_sec1_GridViewGalleryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
