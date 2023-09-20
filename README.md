@@ -23,12 +23,18 @@
 * [Section 21. Extension](#extension)
 * [Section 22. Protocol](#protocol)
 * [Section 24. Generics](#generics)
+* [Section 25. Error Handling](#error-handling)
+* [Section 26. Advanced topics](#advanced-topics)
+
 
 ### 인프런 - SwiftUI - iOS14 퍼펙트 가이드
 * [Section 0. iOS14 기본학습](#기본학습)
 * [Section 1. GridView Gallery](#gridview-gallery)
 * [Section 2. Network JSON](#network-json)
 * [Section 3. Network Image](#network-image)
+* [Section 4. Circular Progress](#circular-progress)
+* [Section 5. StopWatch](#stop-watch)
+* [Section 6. PhotoPicker](#photo-picker)
 
 
 ## 인프런 - iOS 개발을 위한 swift5 완벽 가이드
@@ -530,6 +536,44 @@ Signed에서는 산술 시프트 >> 사용
 ### Generics
 - 같은 이름의 함수가 두 개 있을 때 전달하는 매개변수에 따라 호출되는 함수가 결정됨
 
+### Error Handling
+- Compile time error
+    - 대부분 문법 상의 문제
+    - 컴파일러가 제공하는 방법으로 수정 가능
+- Runtime error
+    - 실행 중 발생하는 에러
+    - 디바이스나 리소스 상태에 따라 발생 가능
+- 에러는 Error 프로토콜을 따르면 됨
+- throw, throws 구분 필요
+    - throw: 에러를 던짐
+    - throws: 함수, 메소드, 생성자가 에러를 던질 수 있음
+- 에러 처리 방법
+1. do-catch
+    - 첫번째 catch 블록과 먼저 매칭 → 패턴이 생략된 catch 블록은 마지막으로 배치
+    - catch 블록에서는 가장 까다로운 패턴부터 배치
+2. try + optional binding
+3. 전달받은 에러를 다른 코드 블록으로 전달
+- throws 키워드 필요
+- Optional try
+    - try? : optional try
+    - try! : forced try
+- defer
+    - 코드의 실행을 scope가 종료되는 시점으로 연기함
+    - 주로 코드에서 사용하는 자원을 정리할 때 활용
+    - 주로 앞에 배치함
+
+### Advanced Topics
+- 사용 가능한 버전인지 확인하는 역할
+    - if #available(OS version, OS version, *) { … } else { … }
+    - where #available(OS version, *) { … }
+    - guard #available(OS version, *) else { return }
+    - ‘*’ 생략 불가
+- 필요에 따라 여러 OS와 최소 버전을 적을 수 있음
+    - 연결은 논리연산자 &&, || 가 아닌 ‘,’로
+    - e.g. #available(iOS 11.0, macOS 13.0)
+    - e.g. #available(iOS 11.0), #available(macOS 13.0)
+
+
 ## 인프런 - SwiftUI - iOS14 퍼펙트 가이드
 ### 기본학습
 - Stack
@@ -684,6 +728,20 @@ Signed에서는 산술 시프트 >> 사용
 - 변화를 감지하기 위해 @Published 어노테이션 추가
 <img width="25%" alt="userlist1" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/7bf43982-e39a-4923-9cd5-d8b32a0f99f7">
 <img width="25%" alt="userlist2" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/2ee87338-ae3e-493d-982f-a2191b3b59ba">
+
+### Circular Progress
+
+
+### Stop Watch
+- Button(”Start”) { }으로 하면 “Start”라는 텍스트만 터치 감지 가능
+- → 버튼 내 모든 곳에서 터치되도록 하려면 Button(action: {}, label: {Text(”Start”)})와 같이 사용할 것
+    - 단, .frame()이나 .background() 등은 label 안에서 설정할 것
+- 화면 가로폭 길이: UIScreen.main.bounds.size.width
+<img width="25%" alt="stopwatch" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/64a8a6cb-1f81-43ea-850c-1788425df07d">
+
+
+### Photo Picker
+<img width="25%" alt="photopicker" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/99f85981-7a97-4435-82ce-97d587153a5d">
 
 
 ------------------
