@@ -35,6 +35,7 @@
 * [Section 4. Circular Progress](#circular-progress)
 * [Section 5. StopWatch](#stop-watch)
 * [Section 6. PhotoPicker](#photo-picker)
+* [Section 7. Calculator](#calculator)
 
 
 ## 인프런 - iOS 개발을 위한 swift5 완벽 가이드
@@ -743,6 +744,18 @@ Signed에서는 산술 시프트 >> 사용
 ### Photo Picker
 <img width="25%" alt="photopicker" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/99f85981-7a97-4435-82ce-97d587153a5d">
 
+### Calculator
+
+- 숫자 버튼 → ZStack으로 Circle(), Text() 쌓는 것보다는 Circle().overlay(Text()) 사용하는 것이 보기에 더 자연스러워서 좋음
+- 계산 결과가 나오는 텍스트만 오른쪽 정렬 → Text의 frame의 width를 화면 가로 길이만큼 설정한 후, alignment를 trailing으로 설정
+- 도형의 aspectRatio(2)로 지정하면 가로 2: 세로 1
+- Spacer(minLength: xxx) ← 최소 어느 정도까지 공간을 확보하겠다
+- 계산기 로직은 class로 따로 뺌
+- Circle로 버튼 모양을 만들어 놓은 상태에서 버튼 기능을 주고 싶다면?
+  1. Button의 label에 해당 모양 넣기
+  2. 모양에 .onTapGesture() 추가
+  
+<img width="25%" alt="calc" src="https://github.com/youmikimm/swiftUI-study/assets/99166914/0a294f76-4570-4780-bad5-3cf0f527c579">
 
 ------------------
 [맨 위로 이동](#swift-and-swiftui-study)
