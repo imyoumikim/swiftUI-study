@@ -41,7 +41,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             self.picker.isPresent = false   // 내리기
-//            self.picker.images.removeAll()  // 가져올 때마다 새로 고침
+            self.picker.images.removeAll()  // 가져올 때마다 새로 고침
             
             for img in results {
                 if img.itemProvider.canLoadObject(ofClass: UIImage.self) {
