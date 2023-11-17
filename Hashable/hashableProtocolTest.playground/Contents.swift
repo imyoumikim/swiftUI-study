@@ -7,13 +7,15 @@ struct Point: Identifiable, Equatable, Hashable {
 
     static func == (lhs: Point, rhs: Point) -> Bool {
         return lhs.x == rhs.x && lhs.y == lhs.y
+        // return lhs.x == rhs.x
     }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(x)
         hasher.combine(y)
+        // hasher.combine(y)를 주석처리하면 두번째 사진의 결과 확인 가능
     }
-} // combine()은 ==의 조건과 동일하게 사용해야 함
+}
 
 func printArray<T: Hashable>(array: [T]) {
     print("Print Array >>")
