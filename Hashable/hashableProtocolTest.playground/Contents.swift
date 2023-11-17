@@ -29,7 +29,7 @@ func removeDuplicate<T: Hashable>(array: inout [T]) {
     printArray(array: array)
 }
 
-var selectedPoints: [Point] = [Point(x: 100, y: 100), Point(x: 100, y: 200), Point(x: 3, y: 9), Point(x: 3, y: 111), Point(x: 100, y: 300)]
+var selectedPoints: [Point] = [Point(x: 100, y: 100), Point(x: 100, y: 100), Point(x: 3, y: 9), Point(x: 3, y: 111), Point(x: 100, y: 300)]
 
 removeDuplicate(array: &selectedPoints)
 
